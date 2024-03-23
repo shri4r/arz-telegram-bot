@@ -29,7 +29,7 @@ def add_row(usd, gbp, eur):
 def retrieve_dollar():
     con = sqlite3.connect("currencies.db")
     cur = con.cursor()
-    cur.execute("SELECT dollar FROM tgju")
+    cur.execute("SELECT dollar FROM tgju ORDER BY rowid DESC LIMIT 1")
     dollar = cur.fetchone()[0]
     con.close()
     return dollar
@@ -38,7 +38,7 @@ def retrieve_dollar():
 def retrieve_pound():
     con = sqlite3.connect("currencies.db")
     cur = con.cursor()
-    cur.execute("SELECT pound FROM tgju")
+    cur.execute("SELECT pound FROM tgju ORDER BY rowid DESC LIMIT 1")
     pound = cur.fetchone()[0]
     con.close()
     return pound
@@ -47,7 +47,7 @@ def retrieve_pound():
 def retrieve_euro():
     con = sqlite3.connect("currencies.db")
     cur = con.cursor()
-    cur.execute("SELECT euro FROM tgju")
+    cur.execute("SELECT euro FROM tgju ORDER BY rowid DESC LIMIT 1")
     euro = cur.fetchone()[0]
     con.close()
     return euro

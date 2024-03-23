@@ -15,7 +15,7 @@ This is a Telegram bot that shows the current price of US Dollar, British Pound,
 
 ## Prerequisites
 
-- Python 3.x
+- Python >= 3.8
 - Required Python packages: `requests`, `beautifulsoup4`, `fake_useragent`, `lxml`, `python-telegram-bot`
 
 ## Installation

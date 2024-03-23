@@ -2,6 +2,8 @@ import sqlite3
 
 
 def create_table():
+    # Connect to the SQLite database file "currencies.db"
+    # If the file doesn't exist, it will be created.
     con = sqlite3.connect("currencies.db")
     cur = con.cursor()
     cur.execute("""
@@ -16,10 +18,10 @@ def create_table():
     con.close()
 
 
-def add_row(usd, gbp, eu):
+def add_row(usd, gbp, eur):
     con = sqlite3.connect("currencies.db")
     cur = con.cursor()
-    cur.execute("INSERT INTO tgju VALUES (?, ?, ?)", (usd, gbp, eu))
+    cur.execute("INSERT INTO tgju VALUES (?, ?, ?, CURRENT_TIMESTAMP)", (usd, gbp, eur))
     con.commit()
     con.close()
 

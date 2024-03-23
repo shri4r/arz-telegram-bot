@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from lxml import etree
 
+from db_functions import add_row, create_table
+
 
 url = "http://www.tgju.org/"
 
@@ -40,6 +42,10 @@ def fix_string(price_str_with_commas: str) -> str:
     return fixed_string
 
 
-dollar = fix_string(dollar_price_str)
-pound = fix_string(pound_price_str)
-euro = fix_string(euro_price_str)
+if __name__ == "__main__":
+    dollar = fix_string(dollar_price_str)
+    pound = fix_string(pound_price_str)
+    euro = fix_string(euro_price_str)
+
+    create_table()
+    add_row(dollar, pound, euro)

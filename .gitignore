@@ -1,0 +1,18 @@
+# Ignore configuration file
+config.py
+
+# Ignore database files
+*.db
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore log files
+*.log
+
+# Ignore virtual environment
+venv/
+
+# Ignore ruff linter folder
+.ruff_cache/

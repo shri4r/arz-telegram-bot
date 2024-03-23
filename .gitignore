@@ -1,6 +1,3 @@
-# Ignore configuration file
-config.py
-
 # Ignore database files
 *.db
 

@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from lxml import etree
 
+
 url = "http://www.tgju.org/"
 
 ua = UserAgent()

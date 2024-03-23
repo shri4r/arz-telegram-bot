@@ -53,7 +53,7 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
 if __name__ == "__main__":
     application = (
         ApplicationBuilder()
-        .token(TOKEN)  # Paste your Bot Token here
+        .token(TOKEN)
         .build()
     )
 

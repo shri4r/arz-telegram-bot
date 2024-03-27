@@ -1,53 +1,86 @@
 import sqlite3
 
 
+def get_db_connection():
+    """Return a new connection to the database."""
+    return sqlite3.connect("currencies.db")
+
+
 def create_table():
-    # Connect to the SQLite database file "currencies.db"
-    # If the file doesn't exist, it will be created.
-    con = sqlite3.connect("currencies.db")
-    cur = con.cursor()
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS tgju(
-            dollar TEXT,
-            pound TEXT,
-            euro TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-    con.commit()
-    con.close()
+    """Create the tgju table if it doesn't exist."""
+    try:
+        with get_db_connection() as con:
+            cur = con.cursor()
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS tgju(
+                    dollar TEXT,
+                    pound TEXT,
+                    euro TEXT,
+                    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                )
+            """)
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if con:
+            con.close()
 
 
 def add_row(usd, gbp, eur):
-    con = sqlite3.connect("currencies.db")
-    cur = con.cursor()
-    cur.execute("INSERT INTO tgju VALUES (?, ?, ?, CURRENT_TIMESTAMP)", (usd, gbp, eur))
-    con.commit()
-    con.close()
+    """Add a new row to the tgju table."""
+    try:
+        with get_db_connection() as con:
+            cur = con.cursor()
+            cur.execute(
+                "INSERT INTO tgju VALUES (?, ?, ?, CURRENT_TIMESTAMP)", (usd, gbp, eur)
+            )
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if con:
+            con.close()
 
 
 def retrieve_dollar():
-    con = sqlite3.connect("currencies.db")
-    cur = con.cursor()
-    cur.execute("SELECT dollar FROM tgju ORDER BY rowid DESC LIMIT 1")
-    dollar = cur.fetchone()[0]
-    con.close()
+    """Retrieve the latest dollar value from the tgju table."""
+    try:
+        with get_db_connection() as con:
+            cur = con.cursor()
+            cur.execute("SELECT dollar FROM tgju ORDER BY rowid DESC LIMIT 1")
+            dollar = cur.fetchone()[0]
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if con:
+            con.close()
     return dollar
 
 
 def retrieve_pound():
-    con = sqlite3.connect("currencies.db")
-    cur = con.cursor()
-    cur.execute("SELECT pound FROM tgju ORDER BY rowid DESC LIMIT 1")
-    pound = cur.fetchone()[0]
-    con.close()
+    """Retrieve the latest pound value from the tgju table."""
+    try:
+        with get_db_connection() as con:
+            cur = con.cursor()
+            cur.execute("SELECT pound FROM tgju ORDER BY rowid DESC LIMIT 1")
+            pound = cur.fetchone()[0]
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if con:
+            con.close()
     return pound
 
 
 def retrieve_euro():
-    con = sqlite3.connect("currencies.db")
-    cur = con.cursor()
-    cur.execute("SELECT euro FROM tgju ORDER BY rowid DESC LIMIT 1")
-    euro = cur.fetchone()[0]
-    con.close()
+    """Retrieve the latest euro value from the tgju table."""
+    try:
+        with get_db_connection() as con:
+            cur = con.cursor()
+            cur.execute("SELECT euro FROM tgju ORDER BY rowid DESC LIMIT 1")
+            euro = cur.fetchone()[0]
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if con:
+            con.close()
     return euro

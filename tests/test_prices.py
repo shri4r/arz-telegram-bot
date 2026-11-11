@@ -1,3 +1,4 @@
+import asyncio
 import importlib
 import sqlite3
 import tempfile
@@ -145,6 +146,28 @@ class ReplyTests(unittest.TestCase):
 
     def test_missing_data_message(self):
         self.assertIn("not available yet", bot.format_price("dollar", None))
+
+
+class PollingStartupTests(unittest.TestCase):
+    def test_polling_starts_without_an_existing_event_loop(self):
+        # Python 3.14 no longer creates an implicit main-thread event loop.
+        asyncio.set_event_loop(None)
+        with patch.object(bot, "TOKEN", "123456:offline-test-token"):
+            application = bot.build_application()
+
+        async def stop_after_initialization(app):
+            app.stop_running()
+
+        application.post_init = stop_after_initialization
+        # Exercise the real polling entry point without contacting Telegram.
+        with patch.object(
+            type(application), "_bootstrap_initialize", new_callable=AsyncMock
+        ) as initialize:
+            try:
+                application.run_polling(stop_signals=None)
+                initialize.assert_awaited_once()
+            finally:
+                asyncio.set_event_loop(None)
 
 
 class BotTests(unittest.IsolatedAsyncioTestCase):

@@ -35,7 +35,7 @@ Prices refresh every **5 minutes** while the bot is running. Each reply includes
 
 ### 1. Get the project
 
-Install Python **3.9 or newer** and Git, then run:
+Install Python **3.10 or newer** and Git. Python **3.14** is supported, including installation from prebuilt packages on 64-bit Windows. Run:
 
 ```bash
 git clone https://github.com/shri4r/arz-telegram-bot.git
@@ -60,6 +60,14 @@ python -m pip install -r requirements.txt
 ```
 
 The requirements include `python-telegram-bot[job-queue]` for scheduled updates, Requests for HTTP fetching, and Beautiful Soup with lxml for HTML parsing.
+
+If you already installed an older version of this project, update the code and upgrade dependencies inside your existing virtual environment:
+
+```bash
+python -m pip install --upgrade -r requirements.txt
+```
+
+You can keep Python 3.14 installed. The updated lxml dependency has a prebuilt Windows x86-64 package, so this installation does not require Microsoft C++ Build Tools.
 
 ### 3. Configure your Telegram bot token
 
@@ -214,7 +222,7 @@ Released under the [MIT License](LICENSE). See the license for its warranty and 
 
 ### ۱. دریافت پروژه
 
-پایتون **۳٫۹ یا جدیدتر** و Git را نصب کنید و دستورهای زیر را اجرا کنید:
+پایتون **۳٫۱۰ یا جدیدتر** و Git را نصب کنید و دستورهای زیر را اجرا کنید. پایتون **۳٫۱۴** نیز پشتیبانی می‌شود و بسته‌های آماده برای ویندوز ۶۴ بیتی موجود هستند:
 
 <div dir="ltr">
 
@@ -247,6 +255,18 @@ python -m pip install -r requirements.txt
 </div>
 
 فایل وابستگی‌ها شامل `python-telegram-bot[job-queue]` برای زمان‌بندی، Requests برای دریافت صفحه و Beautiful Soup به همراه lxml برای استخراج اطلاعات HTML است.
+
+اگر نسخه قدیمی پروژه را نصب کرده‌اید، کد پروژه را به‌روز کنید و داخل همان محیط مجازی، وابستگی‌ها را ارتقا دهید:
+
+<div dir="ltr">
+
+```bash
+python -m pip install --upgrade -r requirements.txt
+```
+
+</div>
+
+نیازی به تغییر نسخه پایتون ۳٫۱۴ ندارید. نسخه جدید lxml بسته آماده برای ویندوز ۶۴ بیتی دارد و نصب آن به Microsoft C++ Build Tools نیاز ندارد.
 
 ### ۳. تنظیم توکن ربات تلگرام
 

@@ -7,7 +7,7 @@
 
 <a id="english"></a>
 
-# Arz Telegram Bot — Iranian Currency Prices in Tomans
+# Arz Telegram Bot — Foreign Currency Prices in Iranian Tomans
 
 A Python Telegram bot for checking **US Dollar (USD), Euro (EUR), and British Pound (GBP) prices in Iranian tomans**. Arz Telegram Bot fetches exchange-rate data from [TGJU](https://www.tgju.org/), stores it in SQLite, and answers Telegram commands with the latest successfully fetched prices.
 
